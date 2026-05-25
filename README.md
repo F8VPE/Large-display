@@ -4,7 +4,7 @@ With the esp32.ino files and also the esphome file where I get the temperatures 
 
 The file Private.h contains the following data :
 
-const char* fwUrlBase = ("http://your server-address/ota/"); // Specify the URL and certificate
+const char* fwUrlBase = ("http://your online server-address/ota/"); // Specify the URL and certificate
 const char* ssid = "Your SSID";
 const char* wifi_password = "Your wifi password";
 const char* mqtt_server = "adress mqtt server";
