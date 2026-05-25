@@ -31,7 +31,7 @@
 /***************** Date / Time ******************/
 const int FW_VERSION = 128;  // add reset - correction time hiver 1.25 mqtt to VMM
 String name = "Large_display";
-#include "D:\Arduino\Private.h"
+#include "D:\Arduino\Private.h"  // personal data like adresses, passwords etc.
 long up_date = 0;
 const int interval = 10;         // Get data on this interval 120 sec.
 const long dataPostDelay = 180;  // interval update 2h.
