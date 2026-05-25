@@ -6,7 +6,6 @@ The file Private.h contains the following data :
 
 const char* fwUrlBase = ("http://your server-address/ota/"); // Specify the URL and certificate
 const char* ssid = "Your SSID";
-const char* password = "d\\8Ax2N,sKPZDKJSvC1m";
 const char* wifi_password = "Your wifi password";
 const char* mqtt_server = "adress mqtt server";
 const char* mqtt_username = "your mqtt user";
