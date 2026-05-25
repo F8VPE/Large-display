@@ -1,0 +1,82 @@
+esphome:
+  name: ldr-meteo
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "-----------------"
+
+ota:
+  - platform: esphome
+    password: "---------------"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  min_auth_mode: WPA2
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Ldr-Meteo Fallback Hotspot"
+    password: !secret hotspot_password
+	
+mqtt:
+  topic_prefix: /meteo
+  discovery: false
+  broker: !secret mqtt_server
+  port: !secret mqtt_port
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  discovery_prefix: homeassistant
+
+captive_portal:
+
+i2c:
+  sda: 4 # D2
+  scl: 5 # D1
+  scan: true
+  id: bus_a
+  frequency: 400kHz
+
+sensor:
+  - platform: bmp280_i2c
+    temperature:
+      name: "BMP280 Temperature"
+      accuracy_decimals: 2
+      id: outside_temp
+      oversampling: 16x
+      filters:
+      - offset: -4.8
+
+    pressure:
+      name: "BMP280 Pressure"
+#    address: 0x77
+      filters:
+      - offset: +17.1
+#    update_interval: 10s
+
+  - platform: aht10
+    temperature:
+      name: "AHT20 temp"
+      accuracy_decimals: 2
+      filters:
+      - offset: -3.65
+    humidity:
+      name: "AHT20 humidity"
+#    address: 0x38
+      accuracy_decimals: 1
+      filters:
+      - offset: -2.0
+
+  - platform: bh1750
+    name: "BH1750 Illuminance"
+#    address: 0x23
+    filters:
+      - multiply: 6      
+    update_interval: 300s
+    accuracy_decimals: 0
